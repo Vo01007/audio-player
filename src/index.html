@@ -4,8 +4,133 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Audio Player</title>
+  <link rel="stylesheet" href="./styles/main.css">
 </head>
 <body>
-  <h2>Audio Player</h2>
+  <main>
+    <div class="container">
+      <div class="header">
+        <hr />
+      </div>
+      <div class="playerContainer">
+        <div class="albumPicture">
+          <img src="./images/beutiful.jpeg" >
+        </div>
+        <div class="trackInfo">
+          <div class="player">
+            <div class="nameContainer">
+              <div class="track">
+                <p>Beautiful Things</p>
+                
+              </div>
+              <div class="artist">
+                <p>Benson Boone</p>
+              </div>
+            </div>
+            <div class="timeBar">
+              <div id=currentTime class="music-progress__time-item music-current-time start_track">0:00</div>
+              <div id=duration class="music-progress__time-item music-duration-time end_track">3:29</div>
+            </div>
+            <div class="progress_bar">
+              <input class="song" type="range" min='0 'max="100" >
+            </div>
+            <div class="panelPlayers">
+              <div class="left_button" onclick='selecting_track(-1)'>
+                <img src="./images/previous.png" alt="">
+              </div>
+              <div class="playButton">
+                <img id=play class='play' src="./images/play.png" alt="" onclick='play_pause(this)' />
+              </div>
+              <div class="pauseButton">
+                <img id=pause class='pause' src="./images/pause.png" alt="" />
+              </div>
+              <div class="rightButton" onclick='selecting_track(1)'>
+                <img  id="right-next-track-perviy-raz" src="./images/next.png" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="secondContainer">
+      <div class="songsContainer">
+        <div class="header">
+          <hr />
+        </div>
+        <div class="playlist">
+          <div class="song">
+            <p>Beautiful Things</p>
+            <p>Benson Boone</p>
+            <p>3:00</p>
+            <img src="./images/delete.png" alt="">
+          </div>
+          <div class="song">
+            <p>Bleed</p>
+            <p>Connor Kauffman</p>
+            <p>3:00</p>
+            <img src="./images/delete.png" alt="">
+          </div>
+          <div class="song">
+            <p>Cest Beau La Bourgeoisie</p>
+            <p>Discobitch</p>
+            <p>3:00</p>
+            <img src="./images/delete.png" alt="">
+          </div>
+          <div class="song">
+            <p>Take Me Out</p>
+            <p>Franz Ferdinand</p>
+            <p>3:00</p>
+            <img src="./images/delete.png" alt="">
+          </div>
+          <div class="song">
+            <p>Big Dawgs</p>
+            <p>Hanumankind feat. Kalmi</p>
+            <p>3:00</p>
+            <img src="./images/delete.png" alt="">
+          </div>
+          <div class="song">
+            <p>Gladiator</p>
+            <p>Jann</p>
+            <p>3:00</p>
+            <img src="./images/delete.png" alt="">
+          </div>
+          <div class="song">
+            <p>Mamushi (ft. Yuki Chiba)</p>
+            <p>Megan Thee Stallion</p>
+            <p>3:00</p>
+            <img src="./images/delete.png" alt="">
+          </div>
+          <!-- <ul>
+            <li>Beautiful Things Benson Boone 3:00</li>
+            <li>Bleed</li>
+            <li>Cest Beau La Bourgeoisie</li>
+            <li>Take Me Out</li>
+            <li>Big Dawgs</li>
+            <li>Gladiator</li>
+            <li>Mamushi (ft. Yuki Chiba)</li>
+          </ul> -->
+          <!-- <ul>
+            <li>Benson Boone</li>
+            <li>Connor Kauffman</li>
+            <li>Discobitch </li>
+            <li>Franz Ferdinand</li>
+            <li>Hanumankind feat. Kalmi</li>
+            <li>Jann </li>
+            <li>Megan Thee Stallion</li>
+          </ul>
+          <ul>
+            <li>3:00</li>
+            <li>2:25</li>
+            <li>4:00</li>
+            <li>3:58</li>
+            <li>3:10</li>
+            <li>3:31</li>
+            <li>2:37</li>
+          </ul> -->
+        </div>
+      </div>
+    </div>
+  </main>
+
 </body>
 </html>
