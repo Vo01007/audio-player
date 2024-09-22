@@ -14,6 +14,12 @@ const allSongs = [
 
 const playlistElement = document.querySelector('.playlist')
 
+const handleSongDelete = (id) => {
+  const index = allSongs.findIndex(song => song.id === id)
+  allSongs.splice(index, 1)
+  renderSongs(allSongs)
+}
+
 const renderSongs = () => {
   const songsList = allSongs.map((song) => {
     return `
@@ -21,7 +27,7 @@ const renderSongs = () => {
         <p>${song.title}</p>
         <p>${song.artist}</p>
         <p>${song.duration}</p>
-        <img src="./images/delete.png" alt=""/>
+        <img onclick='handleSongDelete(${song.id})' src="./images/delete.png" alt=""/>
       </div>
     `
   })
