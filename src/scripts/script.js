@@ -24,6 +24,7 @@ const handleSongDelete = (id) => {
 const selectCurrentSong = (song) => {
   trackElement.innerHTML = song.title
   artistElement.innerHTML = song.artist
+  //todo: set current audio for the song to play when user presses on play button
 }
 
 const renderSongs = () => {
@@ -40,6 +41,27 @@ const renderSongs = () => {
   playlistElement.innerHTML = songsList
 }
 
+const playSong =  () => {
+ //todo: 
+ // 1. Find song in array
+ // 2. Set src and title for audio element
+ // 3. if new song selected then clear current playback time
+ // 4. if the same song is played then start from the same position
+ // 5. Update play button to pause button
+ // 6. start playing the audio using the audio api
+}
+
+const pauseSong = () => {
+  //todo: 
+  // 1. Remember current position when playing the file
+  // 2. Update pause button to play button
+  // 3. pause the audio using the audio api
+}
+
+//todo: add event listeners for playSong and pauseSong
+
 renderSongs()
+
+
 
 
