@@ -1,16 +1,20 @@
 body {
   background-color: #444257;
-  display: flex;
-  justify-content: center;
 }
 .container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 42rem;
+}
+.playerContainer {
   background-color: #333244;  
   border: 0.7rem solid #181729;
   outline: 0.3rem solid #343345;
 }
 .header {
   border-bottom: 0.7rem solid #181729;
-
 }
 .header hr {
   border: none;
@@ -42,8 +46,7 @@ body {
   color: #f2c232;
  padding: 0 1rem;
 }
-.playerContainer {
-
+.playerContent {
   background-color: #333244;
   display: flex;
   
@@ -167,7 +170,7 @@ body {
   transform: scale(1.6);
 }
 
-.secondContainer {
+.playlistContainer {
   background-color: #333244;  
   border: 0.7rem solid #181729;
   margin-top: 1rem;
