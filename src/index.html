@@ -4,8 +4,117 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Audio Player</title>
+  <link rel="stylesheet" href="./styles/main.css">
 </head>
 <body>
-  <h2>Audio Player</h2>
+  <main>
+    <div class="container">
+      <div class="header">
+        <hr />
+      </div>
+      <div class="playerContainer">
+        <div class="albumPicture">
+          <img class="image" src="./images/Gladiator.jpeg" >
+        </div>
+        <div class="trackInfo">
+          <div class="player">
+            <div class="nameContainer">
+              <div class="track">
+              </div>
+              <div class="artist">
+              </div>
+            </div>
+            <div class="timeBar">
+              <div id=currentTime class="music-progress__time-item music-current-time start_track"></div>
+              <div id=duration class="music-progress__time-item music-duration-time end_track"></div>
+            </div>
+            <div class="progressBar">
+              <input class="song" type="range" min='0 'max="100" >
+            </div>
+            <div class="panelPlayers">
+              <div class="left_button" onclick='selectingTrack(-1)'>
+                <img src="https://cdn.icon-icons.com/icons2/1747/PNG/512/previoustrack_113650.png" alt="">
+              </div>
+              <div class="playButton">
+                <img id=playPause class='pause_active' src="https://cdn.icon-icons.com/icons2/1747/PNG/512/playbutton_113628.png" alt="" onclick='togglePlayPause(this)' />
+            </div>
+              <div class="rightButton" onclick='selectingTrack(1)'>
+                <img  id="right-next-track-perviy-raz" src="https://cdn.icon-icons.com/icons2/1747/PNG/512/nexttrackbutton_113555.png" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="secondContainer">
+      <div class="songsContainer">
+        <div class="header">
+          <hr />
+        </div>
+        <div class="playlist">
+          <div class="song">
+            <p>Scratching The Surface</p>
+            <p>Quincy Larson</p>
+            <p>4:25</p>
+            <img src="./images/delete.png" alt="">
+          </div>
+          <div class="song">
+            <p>Can't Stay Down</p>
+            <p>Quincy Larson</p>
+            <p>4:15</p>
+            <img src="./images/delete.png" alt="">
+          </div>
+          <div class="song">
+            <p>Still Learning</p>
+            <p>Quincy Larson</p>
+            <p>3:51</p>
+            <img src="./images/delete.png" alt="">
+          </div>
+          <div class="song">
+            <p>Cruising for a Musing</p>
+            <p>Quincy Larson</p>
+            <p>3:34</p>
+            <img src="./images/delete.png" alt="">
+          </div>
+          <div class="song">
+            <p>Never Not Favored</p>
+            <p>Quincy Larson</p>
+            <p>3:35</p>
+            <img src="./images/delete.png" alt="">
+          </div>
+          <div class="song">
+            <p>From the Ground Up</p>
+            <p>Quincy Larson</p>
+            <p>3:12</p>
+            <img src="./images/delete.png" alt="">
+          </div>
+          <div class="song">
+            <p>Walking on Air</p>
+            <p>Quincy Larson</p>
+            <p>3:25</p>
+            <img src="./images/delete.png" alt="">
+          </div>
+          <div class="song">
+            <p>Can't Stop Me. Can't Even Slow Me Down.</p>
+            <p>Quincy Larson</p>
+            <p>3:52</p>
+            <img src="./images/delete.png" alt="">
+          </div>
+          <div class="song">
+            <p>The Surest Way Out is Through</p>
+            <p>Quincy Larson</p>
+            <p>3:10</p>
+            <img src="./images/delete.png" alt="">
+          </div>
+          <div class="song">
+            <p>Chasing That Feeling</p>
+            <p>Quincy Larson</p>
+            <p>2:43</p>
+            <img src="./images/delete.png" alt="">
+          </div>
+        </div>
+
+  </main>
+
 </body>
 </html>

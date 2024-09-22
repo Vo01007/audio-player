@@ -1,0 +1,196 @@
+body {
+  background-color: #444257;
+  display: flex;
+  justify-content: center;
+}
+.container {
+  background-color: #333244;  
+  border: 0.7rem solid #181729;
+  outline: 0.3rem solid #343345;
+}
+.header {
+  border-bottom: 0.7rem solid #181729;
+
+}
+.header hr {
+  border: none;
+  border-top: 0.5rem double #f2c232;
+  margin: 1rem;
+  color: #ffffff;
+  overflow: visible;
+  text-align: center;
+  height: 0.3rem;
+  font-size: 1.4rem;
+
+}
+.header hr::after {
+  background: #333244;
+  content: 'Audio Player';
+  padding: 0 1rem;
+  position: relative;
+  top: -1.1rem;
+}
+.track {
+  font-family: 'Meera Inimai', sans-serif;
+  font-size: 1.3rem;
+  color: #ffffff;
+  padding-left: 1rem;
+}
+.artist {
+  font-family: 'Meera Inimai', sans-serif;
+  font-size: 0.8rem;
+  color: #f2c232;
+ padding: 0 1rem;
+}
+.playerContainer {
+
+  background-color: #333244;
+  display: flex;
+  
+}
+.albumPicture {
+  border: 0.7rem solid #181729;
+  margin: 2rem 0 2rem 2rem;
+  width: 13rem;
+  height: 13rem;
+}
+.albumPicture img{
+  width: 13rem;
+}
+.trackInfo {
+  margin: 2rem 1rem;
+  background-color: #181729;
+}
+
+
+/* начало - прогресс бар */
+
+.progressBar{
+  width: 10rem;
+  margin: 0 2rem 1rem;
+}
+.timeBar {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem;
+  color: #a99ba6;
+}
+.start_track {
+  font-family: 'Meera Inimai', sans-serif;
+  font-size: 17px;
+}
+.end_track {
+  font-family: 'Meera Inimai', sans-serif;
+  font-size: 17px
+}
+.panelPlayers {
+  display: flex;
+  justify-content: center;
+  width: 20rem;
+}
+.left_button img {
+  max-width: 2rem;
+  padding: 0.5rem;
+
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out;
+}
+.left_button:hover img{
+  -webkit-transform: scale(1.3);
+  transform: scale(1.3);
+}
+.playButton img {
+  max-width: 2rem;
+  padding: 0.5rem;
+
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out;
+}
+.playButton:hover img {
+  -webkit-transform: scale(1.3);
+  transform: scale(1.3);
+}
+
+.rightButton img {
+  max-width: 2rem;
+  padding: 0.5rem;
+
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out;
+}
+.rightButton:hover img {
+  -webkit-transform: scale(1.3);
+  transform: scale(1.3);
+}
+.progressBar input[type="range"] {
+  display: block;
+  -webkit-appearance: none;
+  background-color: #bdc3c7;
+  width: 17rem;;
+  height: 5px;
+  border-radius: 5px;
+  margin: 0 auto;
+  outline: 0;
+}
+.progressBar input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background-color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid white;
+  cursor: pointer;
+  transition: .4s ease-in-out;
+}
+​.progressBar input [type="range"]::-webkit-slider-thumb:hover {
+  background-color: #000000;
+}
+.progressBar input[type="range"]::-webkit-slider-thumb:active {
+  transform: scale(1.6);
+}
+
+.secondContainer {
+  background-color: #333244;  
+  border: 0.7rem solid #181729;
+  margin-top: 1rem;
+  outline: 0.3rem solid #343345;
+}
+.playlist {
+  display: flex;
+  flex-direction: column;
+}
+.song {
+  display: grid;
+  grid-auto-flow: column;
+  font-size: 1.2rem;
+  margin: 0 0.2rem 0 0.2rem;
+  grid-template-columns: 1.2fr 0.6fr 0.3fr;
+  color: #ffffff;
+}
+.song:hover {
+  background-color: #181729;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+}
+.song p:nth-child(2) {
+  padding-left: 2rem;
+  font-size: 1rem;
+}
+.song p:nth-child(3) {
+  margin-left: 2rem;
+}
+
+.song:hover p{
+  -webkit-transform: scale(0.7.3);
+  transform: scale(0.7.3);
+}
+.song img {
+ width: 1.5rem;
+  padding: 1rem 0;
+}
