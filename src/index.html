@@ -7,12 +7,12 @@
   <link rel="stylesheet" href="./styles/main.css">
 </head>
 <body>
-  <main>
-    <div class="container">
+  <div class="container">
+    <div class="playerContainer">
       <div class="header">
         <hr />
       </div>
-      <div class="playerContainer">
+      <div class="playerContent">
         <div class="albumPicture">
           <img class="image" src="./images/Gladiator.jpeg" >
         </div>
@@ -32,12 +32,12 @@
               <input class="song" type="range" min='0 'max="100" >
             </div>
             <div class="panelPlayers">
-              <div class="left_button" onclick='selectingTrack(-1)'>
+              <div class="leftButton" onclick='selectingTrack(-1)'>
                 <img src="https://cdn.icon-icons.com/icons2/1747/PNG/512/previoustrack_113650.png" alt="">
               </div>
               <div class="playButton">
                 <img id=playPause class='pause_active' src="https://cdn.icon-icons.com/icons2/1747/PNG/512/playbutton_113628.png" alt="" onclick='togglePlayPause(this)' />
-            </div>
+              </div>
               <div class="rightButton" onclick='selectingTrack(1)'>
                 <img  id="right-next-track-perviy-raz" src="https://cdn.icon-icons.com/icons2/1747/PNG/512/nexttrackbutton_113555.png" alt="">
               </div>
@@ -46,7 +46,7 @@
         </div>
       </div>
     </div>
-    <div class="secondContainer">
+    <div class="playlistContainer">
       <div class="songsContainer">
         <div class="header">
           <hr />
@@ -113,8 +113,9 @@
             <img src="./images/delete.png" alt="">
           </div>
         </div>
-
-  </main>
-
+      </div>
+    </div>
+  </div>
 </body>
 </html>
+

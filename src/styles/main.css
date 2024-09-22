@@ -1,16 +1,20 @@
 body {
   background-color: #444257;
-  display: flex;
-  justify-content: center;
 }
 .container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 42rem;
+}
+.playerContainer {
   background-color: #333244;  
   border: 0.7rem solid #181729;
   outline: 0.3rem solid #343345;
 }
 .header {
   border-bottom: 0.7rem solid #181729;
-
 }
 .header hr {
   border: none;
@@ -25,10 +29,15 @@ body {
 }
 .header hr::after {
   background: #333244;
-  content: 'Audio Player';
   padding: 0 1rem;
   position: relative;
   top: -1.1rem;
+}
+.playerContainer .header hr::after {
+  content: 'Audio Player';
+}
+.playlistContainer .header hr::after {
+  content: 'Playlist';
 }
 .track {
   font-family: 'Meera Inimai', sans-serif;
@@ -42,8 +51,7 @@ body {
   color: #f2c232;
  padding: 0 1rem;
 }
-.playerContainer {
-
+.playerContent {
   background-color: #333244;
   display: flex;
   
@@ -65,7 +73,7 @@ body {
 
 /* начало - прогресс бар */
 
-.progressBar{
+.progress_bar{
   width: 10rem;
   margin: 0 2rem 1rem;
 }
@@ -88,7 +96,7 @@ body {
   justify-content: center;
   width: 20rem;
 }
-.left_button img {
+.leftButton img {
   max-width: 2rem;
   padding: 0.5rem;
 
@@ -97,7 +105,7 @@ body {
   -webkit-transition: .3s ease-in-out;
   transition: .3s ease-in-out;
 }
-.left_button:hover img{
+.leftButton:hover img{
   -webkit-transform: scale(1.3);
   transform: scale(1.3);
 }
@@ -114,7 +122,19 @@ body {
   -webkit-transform: scale(1.3);
   transform: scale(1.3);
 }
+.pauseButton img {
+  max-width: 2rem;
+  padding: 0.5rem;;
 
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out;
+}
+.pauseButton:hover img {
+  -webkit-transform: scale(1.3);
+  transform: scale(1.3);
+}
 .rightButton img {
   max-width: 2rem;
   padding: 0.5rem;
@@ -135,7 +155,7 @@ body {
   width: 17rem;;
   height: 5px;
   border-radius: 5px;
-  margin: 0 auto;
+  margin: 0.5rem auto;
   outline: 0;
 }
 .progressBar input[type="range"]::-webkit-slider-thumb {
@@ -155,7 +175,7 @@ body {
   transform: scale(1.6);
 }
 
-.secondContainer {
+.playlistContainer {
   background-color: #333244;  
   border: 0.7rem solid #181729;
   margin-top: 1rem;
