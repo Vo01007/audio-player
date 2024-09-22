@@ -29,10 +29,15 @@ body {
 }
 .header hr::after {
   background: #333244;
-  content: 'Audio Player';
   padding: 0 1rem;
   position: relative;
   top: -1.1rem;
+}
+.playerContainer .header hr::after {
+  content: 'Audio Player';
+}
+.playlistContainer .header hr::after {
+  content: 'Playlist';
 }
 .track {
   font-family: 'Meera Inimai', sans-serif;
