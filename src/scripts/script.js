@@ -14,7 +14,13 @@ const allSongs = [
 const playlistElement = document.querySelector('.playlist')
 const trackElement = document.querySelector('.track')
 const artistElement = document.querySelector('.artist')
+const currentTimeElement = document.querySelector('currentTime');
+const durationElement = document.querySelector('duration');
+const progressBarElement = document.querySelector('progressBar');
+const playPauseElement = document.querySelector('playPause');
 const audio = new Audio();
+
+let isPlaying = false;
 
 const handleSongDelete = (id) => {
   const index = allSongs.findIndex(song => song.id === id)
@@ -23,15 +29,14 @@ const handleSongDelete = (id) => {
 }
 
 const selectCurrentSong = (song) => {
-  trackElement.innerHTML = song.title
-  artistElement.innerHTML = song.artist
+  currentSong = song;
+  trackElement.innerHTML = song.title;
+  artistElement.innerHTML = song.artist;
   //todo: set current audio for the song to play when user presses on play button
-  audio.src = song.src
-  audio.onloadedmetadata = () => {
-    duration.innerText = formatingTime(this.duration)
-  };
-  playSong.src = 'https://cdn.icon-icons.com/icons2/1132/PNG/512/1486348534-music-pause-stop-control-play_80459.png';
-  audio.play();
+  audio.src = song.src;
+  audio.currentTime = 0;
+  updateTimeAndDuration();
+  playSong();
 }
 
 const renderSongs = () => {
@@ -48,8 +53,13 @@ const renderSongs = () => {
   playlistElement.innerHTML = songsList
 }
 
-const playSong =  (song) => {
-
+const playSong =  () => {
+  if(currentSong){
+    audio.play();
+    isPlaying = true;
+    audioPlayer.addEventListener('timeupdate', updateProgress);
+  }
+  
  //todo: 
  // 1. Find song in array
  // 2. Set src and title for audio element
@@ -60,10 +70,24 @@ const playSong =  (song) => {
 }
 
 const pauseSong = () => {
+  if(currentSong){
+    audio.pause();
+    isPlaying = false;
+
+  }
   //todo: 
   // 1. Remember current position when playing the file
   // 2. Update pause button to play button
   // 3. pause the audio using the audio api
+}
+const togglePlayPause = (playPauseElement) => {
+  if (isPlaying){
+    pauseSong();
+    playPauseElement.src = 'https://cdn.icon-icons.com/icons2/1747/PNG/512/playbutton_113628.png'
+  } else {
+    playSong();
+    playPauseElement.src = 'https://cdn.icon-icons.com/icons2/1132/PNG/512/1486348534-music-pause-stop-control-play_80459.png'
+  }
 }
 
 //todo: add event listeners for playSong and pauseSong
