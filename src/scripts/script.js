@@ -14,6 +14,7 @@ const allSongs = [
 const playlistElement = document.querySelector('.playlist')
 const trackElement = document.querySelector('.track')
 const artistElement = document.querySelector('.artist')
+const audio = new Audio();
 
 const handleSongDelete = (id) => {
   const index = allSongs.findIndex(song => song.id === id)
@@ -25,6 +26,12 @@ const selectCurrentSong = (song) => {
   trackElement.innerHTML = song.title
   artistElement.innerHTML = song.artist
   //todo: set current audio for the song to play when user presses on play button
+  audio.src = song.src
+  audio.onloadedmetadata = () => {
+    duration.innerText = formatingTime(this.duration)
+  };
+  playSong.src = 'https://cdn.icon-icons.com/icons2/1132/PNG/512/1486348534-music-pause-stop-control-play_80459.png';
+  audio.play();
 }
 
 const renderSongs = () => {
@@ -41,7 +48,8 @@ const renderSongs = () => {
   playlistElement.innerHTML = songsList
 }
 
-const playSong =  () => {
+const playSong =  (song) => {
+
  //todo: 
  // 1. Find song in array
  // 2. Set src and title for audio element
