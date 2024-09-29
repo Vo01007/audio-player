@@ -28,12 +28,12 @@ const handleSongDelete = (id) => {
   renderSongs(allSongs)
 }
 
-const  pauseCurrentAudio = () => {
- const {current:{audio}} = song;
- if(!audio) return;
- audio.pause();
- audio.currentTime = 0;  
-} 
+// const  pauseCurrentAudio = () => {
+//  const {current:{audio}} = song;
+//  if(!audio) return;
+//  audio.pause();
+//  audio.currentTime = 0;  
+// } 
 
 const selectCurrentSong = (song) => {
   currentSong = song;
@@ -41,16 +41,16 @@ const selectCurrentSong = (song) => {
   artistElement.innerHTML = song.artist;
   //todo: set current audio for the song to play when user presses on play button
   audio.src = song.src;
-  audioUpdateHandler(song);
+  // audioUpdateHandler(song);
   playSong();
   pauseSong();
   pauseCurrentAudio();
 }
 
 const renderSongs = () => {
-  audio.addEventListener("loadeddata", () => {
-    const newItem = {song, duration: audio.duration,audio}
-  });
+  // audio.addEventListener("loadeddata", () => {
+  //   const newItem = {song, duration: audio.duration,audio}
+  // });
   const songsList = allSongs.map((song) => {
     return `
       <div class="song" onclick='selectCurrentSong(${JSON.stringify(song)})'>
@@ -65,10 +65,10 @@ const renderSongs = () => {
   playlistElement.innerHTML = songsList
 }
 
-const playSong =  () => {
-  if(currentSong){
+const playSong =  (playPauseElement) => {
+  if(isPlaying){
     audio.play();
-    isPlaying = true;
+    playPauseElement.src = 'https://cdn.icon-icons.com/icons2/1132/PNG/512/1486348534-music-pause-stop-control-play_80459.png'
   }
   
  //todo: 
@@ -80,81 +80,81 @@ const playSong =  () => {
  // 6. start playing the audio using the audio api
 }
 
-const pauseSong = () => {
-  if(currentSong){
+const pauseSong = (playPauseElement) => {
+  if (!isPlaying){
     audio.pause();
-    isPlaying = false;
-
+    playPauseElement.src = 'https://cdn.icon-icons.com/icons2/1747/PNG/512/playbutton_113628.png'
   }
   //todo: 
   // 1. Remember current position when playing the file
   // 2. Update pause button to play button
   // 3. pause the audio using the audio api
 }
-const togglePlayPause = (playPauseElement) => {
-  if (isPlaying){
-    pauseSong();
-    playPauseElement.src = 'https://cdn.icon-icons.com/icons2/1747/PNG/512/playbutton_113628.png'
-  } else {
-    playSong();
-    playPauseElement.src = 'https://cdn.icon-icons.com/icons2/1132/PNG/512/1486348534-music-pause-stop-control-play_80459.png'
-    playPauseElement.style.width = '${max-width = 2.3rem;}';
-  }
-}
+// const togglePlayPause = (playPauseElement) => {
+//   if (isPlaying){
+//     pauseSong();
+//     playPauseElement.src = 'https://cdn.icon-icons.com/icons2/1747/PNG/512/playbutton_113628.png'
+//   } else {
+//     playSong();
+//     playPauseElement.src = 'https://cdn.icon-icons.com/icons2/1132/PNG/512/1486348534-music-pause-stop-control-play_80459.png'
+//     playPauseElement.style.width = '${max-width = 2.3rem;}';
+//   }
+// }
 
-const audioUpdateHandler = ({ audio, duration }) => {
-  const progress = document.querySelector('.currentTime');
-  const timeLine = document.querySelector('.duration');
+// const audioUpdateHandler = ({ audio, duration }) => {
+//   const progress = document.querySelector('.currentTime');
+//   const timeLine = document.querySelector('.duration');
 
-  // audio.play();
+//   // audio.play();
 
-  audio.addEventListener('timeupdate', ({target}) => {
-    const currentTime = target;
-    const width = currentTime * 100 / duration;
+//   audio.addEventListener('timeupdate', ({target}) => {
+//     const currentTime = target;
+//     const width = currentTime * 100 / duration;
     
-    timeLine.innerHTML =  toMinAndSec(currentTime);
-    progress.style.width = '${width}%';
-  });
-}
-handleNext = () => {
-  const {current} = song;
-  const currentItem = document.querySelector(song.id="currentId");
-  const next = currentItem.nextSibling?.song;
-  const first = songList.firstChild?.song;
+//     timeLine.innerHTML =  toMinAndSec(currentTime);
+//     progress.style.width = '${width}%';
+//   });
+// }
+// handleNext = () => {
+//   const {current} = song;
+//   const currentItem = document.querySelector(song.id="currentId");
+//   const next = currentItem.nextSibling?.song;
+//   const first = songList.firstChild?.song;
 
-  const itemId = next?.id || first?.id;
+//   const itemId = next?.id || first?.id;
 
-  if(!itemId) return;
+//   if(!itemId) return;
 
-  setCurrentItem(itemId);
-}
-handlePrev = () => {
-  const {current} = song;
-  const currentItem = document.querySelector(song.id="currentId");
-  const prev = currentItem.previousSibling?.song;
-  const last = songList.lastChild?.song;
+//   setCurrentItem(itemId);
+// }
+// handlePrev = () => {
+//   const {current} = song;
+//   const currentItem = document.querySelector(song.id="currentId");
+//   const prev = currentItem.previousSibling?.song;
+//   const last = songList.lastChild?.song;
 
-  const itemId = prev?.id || last?.id;
+//   const itemId = prev?.id || last?.id;
 
-  if(!itemId) return;
+//   if(!itemId) return;
 
-  setCurrentItem(itemId);
-}
+//   setCurrentItem(itemId);
+// }
 
 const handlePlayer = () => {
-  const next = document.querySelector(".rightButton");
-  const prev = document.querySelector(".leftButton");
+  // const next = document.querySelector(".rightButton");
+  // const prev = document.querySelector(".leftButton");
 
-  next.addEventListener("click", handleNext.bind(next));
-  prev.addEventListener("click", handlePrev.bind(prev));
-  playSong.addEventListener("click", playSong.bind(audio.play()));
-  pauseSong.addEventListener("click", pauseSong.bind(audio.pause()));
+  // next.addEventListener("click", handleNext.bind(next));
+  // prev.addEventListener("click", handlePrev.bind(prev));
+  playSong.addEventListener("click", playSong());
+  pauseSong.addEventListener("click", pauseSong());
 }
 
 
 //todo: add event listeners for playSong and pauseSong
 
 renderSongs()
+handlePlayer()
 
 
 
