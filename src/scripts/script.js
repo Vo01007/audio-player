@@ -17,7 +17,7 @@ const artistElement = document.querySelector('.artist')
 const currentTimeElement = document.querySelector('currentTime');
 const durationElement = document.querySelector('duration');
 const progressBarElement = document.querySelector('progressBar');
-const playPauseElement = document.querySelector('playPause');
+const playPauseElement = document.querySelector('.playButton img');
 const audio = new Audio(allSongs);
 
 let isPlaying = false;
@@ -42,9 +42,7 @@ const selectCurrentSong = (song) => {
   //todo: set current audio for the song to play when user presses on play button
   audio.src = song.src;
   // audioUpdateHandler(song);
-  playSong();
-  pauseSong();
-  pauseCurrentAudio();
+  // pauseCurrentAudio();
 }
 
 const renderSongs = () => {
@@ -64,13 +62,6 @@ const renderSongs = () => {
   })
   playlistElement.innerHTML = songsList
 }
-
-const playSong =  (playPauseElement) => {
-  if(isPlaying){
-    audio.play();
-    playPauseElement.src = 'https://cdn.icon-icons.com/icons2/1132/PNG/512/1486348534-music-pause-stop-control-play_80459.png'
-  }
-  
  //todo: 
  // 1. Find song in array
  // 2. Set src and title for audio element
@@ -78,28 +69,23 @@ const playSong =  (playPauseElement) => {
  // 4. if the same song is played then start from the same position
  // 5. Update play button to pause button
  // 6. start playing the audio using the audio api
-}
 
-const pauseSong = (playPauseElement) => {
-  if (!isPlaying){
-    audio.pause();
-    playPauseElement.src = 'https://cdn.icon-icons.com/icons2/1747/PNG/512/playbutton_113628.png'
-  }
   //todo: 
   // 1. Remember current position when playing the file
   // 2. Update pause button to play button
   // 3. pause the audio using the audio api
+
+const togglePlayPause = () => {
+  if (isPlaying){
+    audio.pause();
+    isPlaying = false;
+    playPauseElement.src = 'https://cdn.icon-icons.com/icons2/1747/PNG/512/playbutton_113628.png'
+  } else {
+    audio.play();
+    isPlaying = true;
+    playPauseElement.src = 'https://cdn.icon-icons.com/icons2/1933/PNG/512/iconfinder-pause-stop-button-player-music-4593160_122283.png'
+  }
 }
-// const togglePlayPause = (playPauseElement) => {
-//   if (isPlaying){
-//     pauseSong();
-//     playPauseElement.src = 'https://cdn.icon-icons.com/icons2/1747/PNG/512/playbutton_113628.png'
-//   } else {
-//     playSong();
-//     playPauseElement.src = 'https://cdn.icon-icons.com/icons2/1132/PNG/512/1486348534-music-pause-stop-control-play_80459.png'
-//     playPauseElement.style.width = '${max-width = 2.3rem;}';
-//   }
-// }
 
 // const audioUpdateHandler = ({ audio, duration }) => {
 //   const progress = document.querySelector('.currentTime');
@@ -146,9 +132,10 @@ const handlePlayer = () => {
 
   // next.addEventListener("click", handleNext.bind(next));
   // prev.addEventListener("click", handlePrev.bind(prev));
-  playSong.addEventListener("click", playSong());
-  pauseSong.addEventListener("click", pauseSong());
+  playPauseElement.addEventListener("click", togglePlayPause);
 }
+
+
 
 
 //todo: add event listeners for playSong and pauseSong
