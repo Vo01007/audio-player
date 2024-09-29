@@ -14,11 +14,12 @@ const allSongs = [
 const playlistElement = document.querySelector('.playlist')
 const trackElement = document.querySelector('.track')
 const artistElement = document.querySelector('.artist')
-const currentTimeElement = document.querySelector('currentTime');
-const durationElement = document.querySelector('duration');
-const progressBarElement = document.querySelector('progressBar');
+const currentTimeElement = document.querySelector('.currentTime');
+const durationElement = document.querySelector('.duration');
+const progressBarElement = document.querySelector('.progressBarInput');
 const playPauseElement = document.querySelector('.playButton img');
-const audio = new Audio(allSongs);
+let currentSong = null;
+const audio = new Audio();
 
 let isPlaying = false;
 
@@ -41,7 +42,6 @@ const selectCurrentSong = (song) => {
   artistElement.innerHTML = song.artist;
   //todo: set current audio for the song to play when user presses on play button
   audio.src = song.src;
-  // audioUpdateHandler(song);
   // pauseCurrentAudio();
 }
 
@@ -85,22 +85,31 @@ const togglePlayPause = () => {
     isPlaying = true;
     playPauseElement.src = 'https://cdn.icon-icons.com/icons2/1933/PNG/512/iconfinder-pause-stop-button-player-music-4593160_122283.png'
   }
+  audioUpdateHandler(currentSong);
 }
 
-// const audioUpdateHandler = ({ audio, duration }) => {
-//   const progress = document.querySelector('.currentTime');
-//   const timeLine = document.querySelector('.duration');
+const audioUpdateHandler = ({duration} ) => {
+  durationElement.innerHTML = duration;
+  const toMinAndSec = (seconds) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = Math.floor(seconds % 60);
+  
+    // Add leading zero if necessary
+    const formattedSeconds = remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds;
+  
+    return `${minutes}:${formattedSeconds}`;
+  }
 
-//   // audio.play();
-
-//   audio.addEventListener('timeupdate', ({target}) => {
-//     const currentTime = target;
-//     const width = currentTime * 100 / duration;
+  audio.addEventListener('timeupdate', ({target}) => {
+    progressBarElement.value = 0;
+    const {currentTime} = target;
     
-//     timeLine.innerHTML =  toMinAndSec(currentTime);
-//     progress.style.width = '${width}%';
-//   });
-// }
+    const width = (currentTime * 100) / duration;
+    currentTimeElement.innerHTML =  toMinAndSec(currentTime);
+    progressBarElement.style.width = '${width}%';
+    progressBarElement.value = currentTime;
+  });
+}
 // handleNext = () => {
 //   const {current} = song;
 //   const currentItem = document.querySelector(song.id="currentId");
