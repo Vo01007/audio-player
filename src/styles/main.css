@@ -135,6 +135,19 @@ body {
   -webkit-transform: scale(1.3);
   transform: scale(1.3);
 }
+.shuffle img{
+  max-width: 2.8rem;
+  padding: 0.2rem 0.5rem;
+
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out;
+}
+.shuffle:hover img {
+  -webkit-transform: scale(1.3);
+  transform: scale(1.3);
+}
 .rightButton img {
   max-width: 2rem;
   padding: 0.5rem;

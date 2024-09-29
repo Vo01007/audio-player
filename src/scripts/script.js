@@ -18,7 +18,7 @@ const currentTimeElement = document.querySelector('currentTime');
 const durationElement = document.querySelector('duration');
 const progressBarElement = document.querySelector('progressBar');
 const playPauseElement = document.querySelector('playPause');
-const audio = new Audio();
+const audio = new Audio(allSongs);
 
 let isPlaying = false;
 
@@ -28,17 +28,29 @@ const handleSongDelete = (id) => {
   renderSongs(allSongs)
 }
 
+const  pauseCurrentAudio = () => {
+ const {current:{audio}} = song;
+ if(!audio) return;
+ audio.pause();
+ audio.currentTime = 0;  
+} 
+
 const selectCurrentSong = (song) => {
   currentSong = song;
   trackElement.innerHTML = song.title;
   artistElement.innerHTML = song.artist;
   //todo: set current audio for the song to play when user presses on play button
   audio.src = song.src;
-  audioUpdateHandler(current);
+  audioUpdateHandler(song);
   playSong();
+  pauseSong();
+  pauseCurrentAudio();
 }
 
 const renderSongs = () => {
+  audio.addEventListener("loadeddata", () => {
+    const newItem = {song, duration: audio.duration,audio}
+  });
   const songsList = allSongs.map((song) => {
     return `
       <div class="song" onclick='selectCurrentSong(${JSON.stringify(song)})'>
@@ -48,6 +60,7 @@ const renderSongs = () => {
         <img onclick='handleSongDelete(${song.id})' src="./images/delete.png" alt=""/>
       </div>
     `
+  
   })
   playlistElement.innerHTML = songsList
 }
@@ -93,7 +106,7 @@ const audioUpdateHandler = ({ audio, duration }) => {
   const progress = document.querySelector('.currentTime');
   const timeLine = document.querySelector('.duration');
 
-  audio.play();
+  // audio.play();
 
   audio.addEventListener('timeupdate', ({target}) => {
     const currentTime = target;
@@ -103,6 +116,41 @@ const audioUpdateHandler = ({ audio, duration }) => {
     progress.style.width = '${width}%';
   });
 }
+handleNext = () => {
+  const {current} = song;
+  const currentItem = document.querySelector(song.id="currentId");
+  const next = currentItem.nextSibling?.song;
+  const first = songList.firstChild?.song;
+
+  const itemId = next?.id || first?.id;
+
+  if(!itemId) return;
+
+  setCurrentItem(itemId);
+}
+handlePrev = () => {
+  const {current} = song;
+  const currentItem = document.querySelector(song.id="currentId");
+  const prev = currentItem.previousSibling?.song;
+  const last = songList.lastChild?.song;
+
+  const itemId = prev?.id || last?.id;
+
+  if(!itemId) return;
+
+  setCurrentItem(itemId);
+}
+
+const handlePlayer = () => {
+  const next = document.querySelector(".rightButton");
+  const prev = document.querySelector(".leftButton");
+
+  next.addEventListener("click", handleNext.bind(next));
+  prev.addEventListener("click", handlePrev.bind(prev));
+  playSong.addEventListener("click", playSong.bind(audio.play()));
+  pauseSong.addEventListener("click", pauseSong.bind(audio.pause()));
+}
+
 
 //todo: add event listeners for playSong and pauseSong
 
