@@ -34,8 +34,7 @@ const selectCurrentSong = (song) => {
   artistElement.innerHTML = song.artist;
   //todo: set current audio for the song to play when user presses on play button
   audio.src = song.src;
-  audio.currentTime = 0;
-  updateTimeAndDuration();
+  audioUpdateHandler(current);
   playSong();
 }
 
@@ -57,7 +56,6 @@ const playSong =  () => {
   if(currentSong){
     audio.play();
     isPlaying = true;
-    audioPlayer.addEventListener('timeupdate', updateProgress);
   }
   
  //todo: 
@@ -87,7 +85,23 @@ const togglePlayPause = (playPauseElement) => {
   } else {
     playSong();
     playPauseElement.src = 'https://cdn.icon-icons.com/icons2/1132/PNG/512/1486348534-music-pause-stop-control-play_80459.png'
+    playPauseElement.style.width = '${max-width = 2.3rem;}';
   }
+}
+
+const audioUpdateHandler = ({ audio, duration }) => {
+  const progress = document.querySelector('.currentTime');
+  const timeLine = document.querySelector('.duration');
+
+  audio.play();
+
+  audio.addEventListener('timeupdate', ({target}) => {
+    const currentTime = target;
+    const width = currentTime * 100 / duration;
+    
+    timeLine.innerHTML =  toMinAndSec(currentTime);
+    progress.style.width = '${width}%';
+  });
 }
 
 //todo: add event listeners for playSong and pauseSong
