@@ -18,6 +18,8 @@ const currentTimeElement = document.querySelector('.currentTime');
 const durationElement = document.querySelector('.duration');
 const progressBarElement = document.querySelector('.progressBarInput');
 const playPauseElement = document.querySelector('.playButton img');
+const nextElement = document.querySelector(".rightButton img");
+const prevElement = document.querySelector(".leftButton img");
 let currentSong = null;
 const audio = new Audio();
 
@@ -46,9 +48,6 @@ const selectCurrentSong = (song) => {
 }
 
 const renderSongs = () => {
-  // audio.addEventListener("loadeddata", () => {
-  //   const newItem = {song, duration: audio.duration,audio}
-  // });
   const songsList = allSongs.map((song) => {
     return `
       <div class="song" onclick='selectCurrentSong(${JSON.stringify(song)})'>
@@ -94,7 +93,6 @@ const audioUpdateHandler = ({duration} ) => {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = Math.floor(seconds % 60);
   
-    // Add leading zero if necessary
     const formattedSeconds = remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds;
   
     return `${minutes}:${formattedSeconds}`;
@@ -110,37 +108,33 @@ const audioUpdateHandler = ({duration} ) => {
     progressBarElement.value = currentTime;
   });
 }
-// handleNext = () => {
-//   const {current} = song;
-//   const currentItem = document.querySelector(song.id="currentId");
-//   const next = currentItem.nextSibling?.song;
-//   const first = songList.firstChild?.song;
 
-//   const itemId = next?.id || first?.id;
-
-//   if(!itemId) return;
-
-//   setCurrentItem(itemId);
-// }
-// handlePrev = () => {
-//   const {current} = song;
-//   const currentItem = document.querySelector(song.id="currentId");
-//   const prev = currentItem.previousSibling?.song;
-//   const last = songList.lastChild?.song;
-
-//   const itemId = prev?.id || last?.id;
-
-//   if(!itemId) return;
-
-//   setCurrentItem(itemId);
-// }
+const handleNextSong = () => {
+  if(!currentSong) {
+    selectCurrentSong(allSongs[0]);
+    return;
+  }
+  let currentSongIndex = allSongs.findIndex(song => song.id === currentSong.id);
+  currentSongIndex = (currentSongIndex + 1) % allSongs.length;
+  selectCurrentSong(allSongs[currentSongIndex]);
+  audioUpdateHandler(currentSong);
+  audio.play();
+}
+const handlePrevSong = () => {
+  if(currentSong === null) {
+    selectCurrentSong(allSongs[0]);
+    return;
+  }
+  let currentSongIndex = allSongs.findIndex(song => song.id === currentSong.id);
+  currentSongIndex = (currentSongIndex - 1 + allSongs.length) % allSongs.length;
+  selectCurrentSong(allSongs[currentSongIndex]);
+  audioUpdateHandler(currentSong);
+  audio.play();
+}
 
 const handlePlayer = () => {
-  // const next = document.querySelector(".rightButton");
-  // const prev = document.querySelector(".leftButton");
-
-  // next.addEventListener("click", handleNext.bind(next));
-  // prev.addEventListener("click", handlePrev.bind(prev));
+  nextElement.addEventListener("click", handleNextSong);
+  prevElement.addEventListener("click", handlePrevSong);
   playPauseElement.addEventListener("click", togglePlayPause);
 }
 
