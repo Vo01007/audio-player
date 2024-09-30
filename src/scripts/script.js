@@ -32,20 +32,11 @@ const handleSongDelete = (id) => {
   renderSongs(allSongs)
 }
 
-// const  pauseCurrentAudio = () => {
-//  const {current:{audio}} = song;
-//  if(!audio) return;
-//  audio.pause();
-//  audio.currentTime = 0;  
-// } 
-
 const selectCurrentSong = (song) => {
   currentSong = song;
   trackElement.innerHTML = song.title;
   artistElement.innerHTML = song.artist;
-  //todo: set current audio for the song to play when user presses on play button
   audio.src = song.src;
-  // pauseCurrentAudio();
 }
 
 const renderSongs = () => {
@@ -141,14 +132,11 @@ const handlePrevSong = () => {
 }
 
 const handleShuffle = () => {
-  const shuffle = (allSongs) => {
     for (let i = allSongs.length -1; i > 0; i--){
       const j = Math.floor(Math.random() * (i + 1));
+      [allSongs[i], allSongs[j]] = [allSongs[j], allSongs[i]];
     }
-    return allSongs;
-  }
-  const newArray = shuffle(allSongs);
-  renderSongs(newArray);
+  renderSongs();
 }
 
 const handlePlayer = () => {
