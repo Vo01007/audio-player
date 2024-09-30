@@ -20,6 +20,7 @@ const progressBarElement = document.querySelector('.progressBarInput');
 const playPauseElement = document.querySelector('.playButton img');
 const nextElement = document.querySelector(".rightButton img");
 const prevElement = document.querySelector(".leftButton img");
+const shuffleElement = document.querySelector(".shuffle img");
 let currentSong = null;
 const audio = new Audio();
 
@@ -139,10 +140,22 @@ const handlePrevSong = () => {
   audio.play();
 }
 
+const handleShuffle = () => {
+  const shuffle = (allSongs) => {
+    for (let i = allSongs.length -1; i > 0; i--){
+      const j = Math.floor(Math.random() * (i + 1));
+    }
+    return allSongs;
+  }
+  const newArray = shuffle(allSongs);
+  renderSongs(newArray);
+}
+
 const handlePlayer = () => {
   nextElement.addEventListener("click", handleNextSong);
   prevElement.addEventListener("click", handlePrevSong);
   playPauseElement.addEventListener("click", togglePlayPause);
+  shuffleElement.addEventListener("click", handleShuffle);
 }
 
 
