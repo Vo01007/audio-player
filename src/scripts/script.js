@@ -75,6 +75,13 @@ const renderSongs = () => {
   // 3. pause the audio using the audio api
 
 const togglePlayPause = () => {
+  if(!currentSong) {
+    selectCurrentSong(allSongs[0]);
+    audio.play();
+    isPlaying = true;
+    playPauseElement.src = 'https://cdn.icon-icons.com/icons2/1933/PNG/512/iconfinder-pause-stop-button-player-music-4593160_122283.png'
+  }
+
   if (isPlaying){
     audio.pause();
     isPlaying = false;
@@ -83,7 +90,7 @@ const togglePlayPause = () => {
     audio.play();
     isPlaying = true;
     playPauseElement.src = 'https://cdn.icon-icons.com/icons2/1933/PNG/512/iconfinder-pause-stop-button-player-music-4593160_122283.png'
-  }
+  } 
   audioUpdateHandler(currentSong);
 }
 
