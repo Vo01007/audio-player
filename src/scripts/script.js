@@ -101,9 +101,7 @@ const audioUpdateHandler = ({duration} ) => {
     progressBarElement.value = 0;
     const {currentTime} = target;
     
-    const width = (currentTime * 100) / duration;
     currentTimeElement.innerHTML =  toMinAndSec(currentTime);
-    progressBarElement.style.width = '${width}%';
     progressBarElement.value = currentTime;
   });
 }
