@@ -103,9 +103,7 @@ const audioUpdateHandler = ({duration} ) => {
     progressBarElement.value = 0;
     const {currentTime} = target;
     
-    const width = (currentTime * 100) / duration;
     currentTimeElement.innerHTML =  toMinAndSec(currentTime);
-    progressBarElement.style.width = '${width}%';
     progressBarElement.value = currentTime;
   });
 }
@@ -115,20 +113,20 @@ const handleNextSong = () => {
     selectCurrentSong(allSongs[0]);
     return;
   }
-  let currentSongIndex = allSongs.findIndex(song => song.id === currentSong.id);
-  currentSongIndex = (currentSongIndex + 1) % allSongs.length;
-  selectCurrentSong(allSongs[currentSongIndex]);
+  const currentSongIndex = allSongs.findIndex(song => song.id === currentSong.id);
+  const nextSongIndex = currentSongIndex + 1 === allSongs.length ? 0 : currentSongIndex + 1;
+  selectCurrentSong(allSongs[nextSongIndex]);
   audioUpdateHandler(currentSong);
   audio.play();
 }
 const handlePrevSong = () => {
-  if(currentSong === null) {
+  if(!currentSong) {
     selectCurrentSong(allSongs[0]);
     return;
   }
-  let currentSongIndex = allSongs.findIndex(song => song.id === currentSong.id);
-  currentSongIndex = (currentSongIndex - 1 + allSongs.length) % allSongs.length;
-  selectCurrentSong(allSongs[currentSongIndex]);
+  const currentSongIndex = allSongs.findIndex(song => song.id === currentSong.id);
+  const previousSongIndex = currentSongIndex - 1 < 0 ? allSongs.length - 1 : currentSongIndex - 1;
+  selectCurrentSong(allSongs[previousSongIndex]);
   audioUpdateHandler(currentSong);
   audio.play();
 }
