@@ -21,6 +21,7 @@ const playPauseElement = document.querySelector('.playButton img');
 const nextElement = document.querySelector(".rightButton img");
 const prevElement = document.querySelector(".leftButton img");
 const shuffleElement = document.querySelector(".shuffle img");
+const SongElement = document.querySelector(".song");
 let currentSong = null;
 const audio = new Audio();
 
@@ -37,8 +38,12 @@ const selectCurrentSong = (song) => {
   trackElement.innerHTML = song.title;
   artistElement.innerHTML = song.artist;
   audio.src = song.src;
-  togglePlayPause();
   audioUpdateHandler(currentSong);
+  if (isPlaying){
+    audio.pause();
+    isPlaying = false;
+    playPauseElement.src = 'https://cdn.icon-icons.com/icons2/1747/PNG/512/playbutton_113628.png'
+  }
 }
 
 const renderSongs = () => {
@@ -117,7 +122,7 @@ const handleNextSong = () => {
   const nextSongIndex = currentSongIndex + 1 === allSongs.length ? 0 : currentSongIndex + 1;
   selectCurrentSong(allSongs[nextSongIndex]);
   audioUpdateHandler(currentSong);
-  audio.play();
+
 }
 const handlePrevSong = () => {
   if(!currentSong) {
@@ -128,7 +133,6 @@ const handlePrevSong = () => {
   const previousSongIndex = currentSongIndex - 1 < 0 ? allSongs.length - 1 : currentSongIndex - 1;
   selectCurrentSong(allSongs[previousSongIndex]);
   audioUpdateHandler(currentSong);
-  audio.play();
 }
 
 const handleShuffle = () => {
@@ -144,6 +148,7 @@ const handlePlayer = () => {
   prevElement.addEventListener("click", handlePrevSong);
   playPauseElement.addEventListener("click", togglePlayPause);
   shuffleElement.addEventListener("click", handleShuffle);
+  SongElement.addEventListener("click", selectCurrentSong);
 }
 
 renderSongs()
