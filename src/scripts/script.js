@@ -37,6 +37,8 @@ const selectCurrentSong = (song) => {
   trackElement.innerHTML = song.title;
   artistElement.innerHTML = song.artist;
   audio.src = song.src;
+  togglePlayPause();
+  audioUpdateHandler(currentSong);
 }
 
 const renderSongs = () => {
@@ -145,11 +147,6 @@ const handlePlayer = () => {
   playPauseElement.addEventListener("click", togglePlayPause);
   shuffleElement.addEventListener("click", handleShuffle);
 }
-
-
-
-
-//todo: add event listeners for playSong and pauseSong
 
 renderSongs()
 handlePlayer()
