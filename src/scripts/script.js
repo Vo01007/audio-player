@@ -21,8 +21,8 @@ const playPauseElement = document.querySelector('.playButton img');
 const nextElement = document.querySelector(".rightButton img");
 const prevElement = document.querySelector(".leftButton img");
 const shuffleElement = document.querySelector(".shuffle img");
-const SongElement = document.querySelector(".song");
 let currentSong = null;
+
 const audio = new Audio();
 
 let isPlaying = false;
@@ -38,6 +38,7 @@ const selectCurrentSong = (song) => {
   trackElement.innerHTML = song.title;
   artistElement.innerHTML = song.artist;
   audio.src = song.src;
+  
   audioUpdateHandler(currentSong);
   if (isPlaying){
     audio.pause();
@@ -47,19 +48,31 @@ const selectCurrentSong = (song) => {
 }
 
 const renderSongs = () => {
-  const songsList = allSongs.map((song) => {
-    return `
-      <div class="song" onclick='selectCurrentSong(${JSON.stringify(song)})'>
-        <p>${song.title}</p>
-        <p>${song.artist}</p>
-        <p>${song.duration}</p>
-        <img onclick='handleSongDelete(${song.id})' src="./images/delete.png" alt=""/>
-      </div>
-    `
-  
-  })
-  playlistElement.innerHTML = songsList
-}
+  playlistElement.innerHTML = '';
+  allSongs.forEach((song) => {
+    const songDiv = document.createElement('div');
+    songDiv.classList.add('song');
+    
+    songDiv.innerHTML = `
+      <p>${song.title}</p>
+      <p>${song.artist}</p>
+      <p>${song.duration}</p>
+      <img onclick='handleSongDelete(${song.id})' src="./images/delete.png" alt=""/>
+    `;
+
+    songDiv.addEventListener('click', () => selectCurrentSong(song));
+    songDiv.addEventListener('dblclick', () => {
+      selectCurrentSong(song);
+      audio.play();
+      isPlaying = true;
+      playPauseElement.src = 'https://cdn.icon-icons.com/icons2/1933/PNG/512/iconfinder-pause-stop-button-player-music-4593160_122283.png'; // Изменить изображение кнопки
+    });
+
+    playlistElement.appendChild(songDiv);
+  });
+};
+
+
  //todo: 
  // 1. Find song in array
  // 2. Set src and title for audio element
@@ -142,13 +155,12 @@ const handleShuffle = () => {
     }
   renderSongs();
 }
-
 const handlePlayer = () => {
+
   nextElement.addEventListener("click", handleNextSong);
   prevElement.addEventListener("click", handlePrevSong);
   playPauseElement.addEventListener("click", togglePlayPause);
   shuffleElement.addEventListener("click", handleShuffle);
-  SongElement.addEventListener("click", selectCurrentSong);
 }
 
 renderSongs()
