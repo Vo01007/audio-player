@@ -118,13 +118,28 @@ const audioUpdateHandler = ({duration} ) => {
   }
 
   audio.addEventListener('timeupdate', ({target}) => {
-    progressBarElement.value = 0;
-    const {currentTime} = target;
+    const {currentTime, duration} = target;
     
     currentTimeElement.innerHTML =  toMinAndSec(currentTime);
-    progressBarElement.value = currentTime;
+    progressBarElement.value = (currentTime / duration) * 100;
   });
+  progressBarElement.addEventListener('mousedown', () => {
+    progressBarElement.setAttribute('data-mousedown', 'true');
+  });
+
+  progressBarElement.addEventListener('mouseup', (event) => {
+    const duration = audio.duration;
+    const newTime = (event.target.value / 100) * duration; 
+    audio.currentTime = newTime; 
+    progressBarElement.removeAttribute('data-mousedown');
+  });
+
 }
+progressBarElement.addEventListener('input', (event) => {
+  const value = event.target.value;
+  const duration = audio.duration;
+  audio.currentTime = (value / 100) * duration;
+});
 
 const handleNextSong = () => {
   if(!currentSong) {
