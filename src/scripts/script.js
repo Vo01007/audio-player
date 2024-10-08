@@ -96,7 +96,6 @@ const renderSongs = () => {
 
 const togglePlayPause = () => {
 
-
   if (isPlaying){
     audio.pause();
     isPlaying = false;
@@ -138,6 +137,11 @@ const audioUpdateHandler = ({duration} ) => {
   });
 
 }
+progressBarElement.addEventListener('input', (event) => {
+  const value = event.target.value;
+  const duration = audio.duration;
+  audio.currentTime = (value / 100) * duration;
+});
 
 const handleNextSong = () => {
   if(!currentSong) {
