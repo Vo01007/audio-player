@@ -138,11 +138,6 @@ const audioUpdateHandler = ({duration} ) => {
   });
 
 }
-progressBarElement.addEventListener('input', (event) => {
-  const value = event.target.value;
-  const duration = audio.duration;
-  audio.currentTime = (value / 100) * duration;
-});
 
 const handleNextSong = () => {
   if(!currentSong) {
