@@ -33,7 +33,7 @@ const handleSongDelete = (id) => {
   renderSongs(allSongs)
 }
 
-const selectCurrentSong = (song, event) => {
+const selectCurrentSong = (song, currentElement) => {
   currentSong = song;
   trackElement.innerHTML = song.title;
   artistElement.innerHTML = song.artist;
@@ -47,8 +47,7 @@ const selectCurrentSong = (song, event) => {
     playPauseElement.src = 'https://cdn.icon-icons.com/icons2/1747/PNG/512/playbutton_113628.png'
   }
   
-  if (event) {
-    const currentElement = event.target;
+  if (currentElement) {
     const selectedSongElements = document.getElementsByClassName('song selected');
     if (selectedSongElements[0]) {
       selectedSongElements[0].classList.remove('selected');
@@ -74,7 +73,7 @@ const renderSongs = () => {
       <img onclick='handleSongDelete(${song.id})' src="./images/delete.png" alt=""/>
     `;
 
-    songDiv.addEventListener('click', (event) => selectCurrentSong(song, event));
+    songDiv.addEventListener('click', (event) => selectCurrentSong(song, event.target));
     songDiv.addEventListener('dblclick', () => {
       selectCurrentSong(song);
       audio.play();
@@ -111,7 +110,8 @@ const togglePlayPause = () => {
     playPauseElement.src = 'https://cdn.icon-icons.com/icons2/1933/PNG/512/iconfinder-pause-stop-button-player-music-4593160_122283.png'
   } 
   if(!currentSong) {
-    selectCurrentSong(allSongs[0]);
+    const songElements = document.getElementsByClassName('song');
+    selectCurrentSong(allSongs[0], songElements[0]);
     audio.play();
     isPlaying = true;
     playPauseElement.src = 'https://cdn.icon-icons.com/icons2/1933/PNG/512/iconfinder-pause-stop-button-player-music-4593160_122283.png'
