@@ -22,6 +22,7 @@ const nextElement = document.querySelector(".rightButton img");
 const prevElement = document.querySelector(".leftButton img");
 const shuffleElement = document.querySelector(".shuffle img");
 let firstSongElement = null;
+let currentSongElement = null;
 let currentSong = null;
 
 const audio = new Audio();
@@ -35,6 +36,7 @@ const handleSongDelete = (id) => {
 }
 
 const selectCurrentSong = (song, currentElement) => {
+  let selectedSongElements = document.getElementsByClassName('song selected');
   currentSong = song;
   trackElement.innerHTML = song.title;
   artistElement.innerHTML = song.artist;
@@ -47,17 +49,19 @@ const selectCurrentSong = (song, currentElement) => {
     isPlaying = false;
     playPauseElement.src = 'https://cdn.icon-icons.com/icons2/1747/PNG/512/playbutton_113628.png'
   }
+
+  if (selectedSongElements[0]) {
+    selectedSongElements[0].classList.remove('selected');
+  }
   
   if (currentElement) {
-    const selectedSongElements = document.getElementsByClassName('song selected');
-    if (selectedSongElements[0]) {
-      selectedSongElements[0].classList.remove('selected');
-    }
     if (currentElement.tagName === 'P') {
       currentElement.parentElement.classList.add('selected');
     } else {
       currentElement.classList.add('selected');
     }
+    selectedSongElements = document.getElementsByClassName('song selected');
+    currentSongElement = selectedSongElements[0];
   }
 }
 
@@ -165,7 +169,7 @@ const handleNextSong = () => {
   }
   const currentSongIndex = allSongs.findIndex(song => song.id === currentSong.id);
   const nextSongIndex = currentSongIndex + 1 === allSongs.length ? 0 : currentSongIndex + 1;
-  selectCurrentSong(allSongs[nextSongIndex]);
+  selectCurrentSong(allSongs[nextSongIndex], currentSongElement.nextSibling);
   audioUpdateHandler(currentSong);
 
 }
