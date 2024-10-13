@@ -33,17 +33,31 @@ const handleSongDelete = (id) => {
   renderSongs(allSongs)
 }
 
-const selectCurrentSong = (song) => {
+const selectCurrentSong = (song, event) => {
   currentSong = song;
   trackElement.innerHTML = song.title;
   artistElement.innerHTML = song.artist;
   audio.src = song.src;
   
   audioUpdateHandler(currentSong);
+
   if (isPlaying){
     audio.pause();
     isPlaying = false;
     playPauseElement.src = 'https://cdn.icon-icons.com/icons2/1747/PNG/512/playbutton_113628.png'
+  }
+  
+  if (event) {
+    const currentElement = event.target;
+    const selectedSongElements = document.getElementsByClassName('song selected');
+    if (selectedSongElements[0]) {
+      selectedSongElements[0].classList.remove('selected');
+    }
+    if (currentElement.tagName === 'P') {
+      currentElement.parentElement.classList.add('selected');
+    } else {
+      currentElement.classList.add('selected');
+    }
   }
 }
 
@@ -60,7 +74,7 @@ const renderSongs = () => {
       <img onclick='handleSongDelete(${song.id})' src="./images/delete.png" alt=""/>
     `;
 
-    songDiv.addEventListener('click', () => selectCurrentSong(song));
+    songDiv.addEventListener('click', (event) => selectCurrentSong(song, event));
     songDiv.addEventListener('dblclick', () => {
       selectCurrentSong(song);
       audio.play();

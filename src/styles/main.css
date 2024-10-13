@@ -222,3 +222,8 @@ body {
  width: 1.5rem;
   padding: 1rem 0;
 }
+.song.selected {
+  background-color: #181729;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+}
