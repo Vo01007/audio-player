@@ -21,6 +21,7 @@ const playPauseElement = document.querySelector('.playButton img');
 const nextElement = document.querySelector(".rightButton img");
 const prevElement = document.querySelector(".leftButton img");
 const shuffleElement = document.querySelector(".shuffle img");
+const firstSongElement = document.getElementsByClassName('song')[0];
 let currentSong = null;
 
 const audio = new Audio();
@@ -110,8 +111,7 @@ const togglePlayPause = () => {
     playPauseElement.src = 'https://cdn.icon-icons.com/icons2/1933/PNG/512/iconfinder-pause-stop-button-player-music-4593160_122283.png'
   } 
   if(!currentSong) {
-    const songElements = document.getElementsByClassName('song');
-    selectCurrentSong(allSongs[0], songElements[0]);
+    selectCurrentSong(allSongs[0], firstSongElement);
     audio.play();
     isPlaying = true;
     playPauseElement.src = 'https://cdn.icon-icons.com/icons2/1933/PNG/512/iconfinder-pause-stop-button-player-music-4593160_122283.png'
@@ -156,7 +156,7 @@ progressBarElement.addEventListener('input', (event) => {
 
 const handleNextSong = () => {
   if(!currentSong) {
-    selectCurrentSong(allSongs[0]);
+    selectCurrentSong(allSongs[0], firstSongElement);
     return;
   }
   const currentSongIndex = allSongs.findIndex(song => song.id === currentSong.id);
