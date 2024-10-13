@@ -22,6 +22,7 @@ const nextElement = document.querySelector(".rightButton img");
 const prevElement = document.querySelector(".leftButton img");
 const shuffleElement = document.querySelector(".shuffle img");
 let firstSongElement = null;
+let lastSongElement = null;
 let currentSongElement = null;
 let currentSong = null;
 
@@ -80,6 +81,9 @@ const renderSongs = () => {
 
     if (index === 0) {
       firstSongElement = songDiv;
+    }
+    if (index === allSongs.length - 1) {
+      lastSongElement = songDiv;
     }
 
     songDiv.addEventListener('click', (event) => selectCurrentSong(song, event.target));
@@ -180,7 +184,8 @@ const handlePrevSong = () => {
   }
   const currentSongIndex = allSongs.findIndex(song => song.id === currentSong.id);
   const previousSongIndex = currentSongIndex - 1 < 0 ? allSongs.length - 1 : currentSongIndex - 1;
-  selectCurrentSong(allSongs[previousSongIndex]);
+  const previousSiblingElement = currentSongIndex - 1 < 0 ? lastSongElement : currentSongElement.previousSibling;
+  selectCurrentSong(allSongs[previousSongIndex], previousSiblingElement);
   audioUpdateHandler(currentSong);
 }
 
