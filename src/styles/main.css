@@ -218,11 +218,6 @@ body {
 .song p:nth-child(3) {
   margin-left: 2rem;
 }
-
-.song:hover p{
-  -webkit-transform: scale(0.7.3);
-  transform: scale(0.7.3);
-}
 .song img {
  width: 1.5rem;
   padding: 1rem 0;
