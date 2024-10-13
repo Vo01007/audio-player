@@ -21,7 +21,7 @@ const playPauseElement = document.querySelector('.playButton img');
 const nextElement = document.querySelector(".rightButton img");
 const prevElement = document.querySelector(".leftButton img");
 const shuffleElement = document.querySelector(".shuffle img");
-const firstSongElement = document.getElementsByClassName('song')[0];
+let firstSongElement = null;
 let currentSong = null;
 
 const audio = new Audio();
@@ -63,7 +63,7 @@ const selectCurrentSong = (song, currentElement) => {
 
 const renderSongs = () => {
   playlistElement.innerHTML = '';
-  allSongs.forEach((song) => {
+  allSongs.forEach((song, index) => {
     const songDiv = document.createElement('div');
     songDiv.classList.add('song');
     
@@ -73,6 +73,10 @@ const renderSongs = () => {
       <p>${song.duration}</p>
       <img onclick='handleSongDelete(${song.id})' src="./images/delete.png" alt=""/>
     `;
+
+    if (index === 0) {
+      firstSongElement = songDiv;
+    }
 
     songDiv.addEventListener('click', (event) => selectCurrentSong(song, event.target));
     songDiv.addEventListener('dblclick', () => {
