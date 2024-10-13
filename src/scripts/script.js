@@ -169,7 +169,8 @@ const handleNextSong = () => {
   }
   const currentSongIndex = allSongs.findIndex(song => song.id === currentSong.id);
   const nextSongIndex = currentSongIndex + 1 === allSongs.length ? 0 : currentSongIndex + 1;
-  selectCurrentSong(allSongs[nextSongIndex], currentSongElement.nextSibling);
+  const nextSiblingElement = currentSongIndex + 1 === allSongs.length ? firstSongElement : currentSongElement.nextSibling;
+  selectCurrentSong(allSongs[nextSongIndex], nextSiblingElement);
   audioUpdateHandler(currentSong);
 
 }
