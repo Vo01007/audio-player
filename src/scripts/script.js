@@ -167,7 +167,6 @@ const handleNextSong = () => {
 }
 const handlePrevSong = () => {
   if(!currentSong) {
-    selectCurrentSong(allSongs[0]);
     return;
   }
   const currentSongIndex = allSongs.findIndex(song => song.id === currentSong.id);
