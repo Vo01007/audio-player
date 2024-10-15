@@ -176,7 +176,9 @@ const handleNextSong = () => {
   const nextSiblingElement = currentSongIndex + 1 === allSongs.length ? firstSongElement : currentSongElement.nextSibling;
   selectCurrentSong(allSongs[nextSongIndex], nextSiblingElement);
   audioUpdateHandler(currentSong);
-
+  audio.play();
+  isPlaying = true;
+  playPauseElement.src = 'https://cdn.icon-icons.com/icons2/1933/PNG/512/iconfinder-pause-stop-button-player-music-4593160_122283.png'
 }
 const handlePrevSong = () => {
   if(!currentSong) {
