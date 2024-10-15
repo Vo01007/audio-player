@@ -201,6 +201,7 @@ const handlePlayer = () => {
   prevElement.addEventListener("click", handlePrevSong);
   playPauseElement.addEventListener("click", togglePlayPause);
   shuffleElement.addEventListener("click", handleShuffle);
+  audio.addEventListener('ended', handleNextSong);
 }
 
 renderSongs()
