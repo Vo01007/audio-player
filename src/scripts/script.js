@@ -66,6 +66,12 @@ const selectCurrentSong = (song, currentElement) => {
   }
 }
 
+const playCurrentSong = () => {
+  audio.play();
+  isPlaying = true;
+  playPauseElement.src = 'https://cdn.icon-icons.com/icons2/1933/PNG/512/iconfinder-pause-stop-button-player-music-4593160_122283.png';
+}
+
 const renderSongs = () => {
   playlistElement.innerHTML = '';
   allSongs.forEach((song, index) => {
@@ -89,9 +95,7 @@ const renderSongs = () => {
     songDiv.addEventListener('click', (event) => selectCurrentSong(song, event.target));
     songDiv.addEventListener('dblclick', () => {
       selectCurrentSong(song);
-      audio.play();
-      isPlaying = true;
-      playPauseElement.src = 'https://cdn.icon-icons.com/icons2/1933/PNG/512/iconfinder-pause-stop-button-player-music-4593160_122283.png'; // Изменить изображение кнопки
+
     });
 
     playlistElement.appendChild(songDiv);
@@ -118,15 +122,11 @@ const togglePlayPause = () => {
     isPlaying = false;
     playPauseElement.src = 'https://cdn.icon-icons.com/icons2/1747/PNG/512/playbutton_113628.png'
   } else {
-    audio.play();
-    isPlaying = true;
-    playPauseElement.src = 'https://cdn.icon-icons.com/icons2/1933/PNG/512/iconfinder-pause-stop-button-player-music-4593160_122283.png'
+    playCurrentSong();
   } 
   if(!currentSong) {
     selectCurrentSong(allSongs[0], firstSongElement);
-    audio.play();
-    isPlaying = true;
-    playPauseElement.src = 'https://cdn.icon-icons.com/icons2/1933/PNG/512/iconfinder-pause-stop-button-player-music-4593160_122283.png'
+    playCurrentSong();
   } 
   audioUpdateHandler(currentSong);
 }
@@ -176,9 +176,7 @@ const handleNextSong = () => {
   const nextSiblingElement = currentSongIndex + 1 === allSongs.length ? firstSongElement : currentSongElement.nextSibling;
   selectCurrentSong(allSongs[nextSongIndex], nextSiblingElement);
   audioUpdateHandler(currentSong);
-  audio.play();
-  isPlaying = true;
-  playPauseElement.src = 'https://cdn.icon-icons.com/icons2/1933/PNG/512/iconfinder-pause-stop-button-player-music-4593160_122283.png'
+  playCurrentSong();
 }
 const handlePrevSong = () => {
   if(!currentSong) {
