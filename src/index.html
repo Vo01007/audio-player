@@ -4,8 +4,62 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Audio Player</title>
+  <link rel="stylesheet" href="./styles/main.css">
 </head>
 <body>
-  <h2>Audio Player</h2>
+  <div class="container">
+    <div class="playerContainer">
+      <div class="header">
+        <hr />
+      </div>
+      <div class="playerContent">
+        <div class="albumPicture">
+          <img class="image" src="./images/Gladiator.jpeg" />
+        </div>
+        <div class="trackInfo">
+          <div class="player">
+            <div class="nameContainer">
+              <div class="track">
+              </div>
+              <div class="artist">
+              </div>
+            </div>
+            <div class="timeBar">
+              <div class="currentTime"></div>
+              <div class="duration"></div>
+            </div>
+            <div class="progressBar">
+              <input class="progressBarInput" type="range" min='0 'max="100" value="0">
+            </div>
+            <div class="panelPlayers">
+              <div class="leftButton">
+                <img src="https://cdn.icon-icons.com/icons2/1747/PNG/512/previoustrack_113650.png" alt=""/>
+              </div>
+              <div class="playButton">
+                <img src="https://cdn.icon-icons.com/icons2/1747/PNG/512/playbutton_113628.png" alt=""  />
+              </div>
+              <div class="rightButton">
+                <img src="https://cdn.icon-icons.com/icons2/1747/PNG/512/nexttrackbutton_113555.png" alt=""/>
+              </div>
+              <div class="shuffle">
+                <img src="https://cdn.icon-icons.com/icons2/510/PNG/96/shuffle_icon-icons.com_50042.png" alt=""/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="playlistContainer">
+      <div class="songsContainer">
+        <div class="header">
+          <hr />
+        </div>
+        <div class="playlist">
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="./scripts/script.js"></script>
 </body>
 </html>
+
