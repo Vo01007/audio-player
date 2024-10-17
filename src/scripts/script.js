@@ -184,11 +184,17 @@ const handlePrevSong = () => {
   if(!currentSong) {
     return;
   }
+  if(audio.currentTime > 2){
+    audio.currentTime = 0;
+    audio.play();
+    return
+  }
   const currentSongIndex = allSongs.findIndex(song => song.id === currentSong.id);
   const previousSongIndex = currentSongIndex - 1 < 0 ? allSongs.length - 1 : currentSongIndex - 1;
   const previousSiblingElement = currentSongIndex - 1 < 0 ? lastSongElement : currentSongElement.previousSibling;
   selectCurrentSong(allSongs[previousSongIndex], previousSiblingElement);
   audioUpdateHandler(currentSong);
+  audio.play();
 }
 
 const handleShuffle = () => {
