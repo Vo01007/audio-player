@@ -45,12 +45,6 @@ const selectCurrentSong = (song, currentElement) => {
   
   audioUpdateHandler(currentSong);
 
-  if (isPlaying){
-    audio.pause();
-    isPlaying = false;
-    playPauseElement.src = 'https://cdn.icon-icons.com/icons2/1747/PNG/512/playbutton_113628.png'
-  }
-
   if (selectedSongElements[0]) {
     selectedSongElements[0].classList.remove('selected');
   }
@@ -192,7 +186,7 @@ const handlePrevSong = () => {
   const previousSiblingElement = currentSongIndex - 1 < 0 ? lastSongElement : currentSongElement.previousSibling;
   selectCurrentSong(allSongs[previousSongIndex], previousSiblingElement);
   audioUpdateHandler(currentSong);
-  audio.play();
+  playCurrentSong();
 }
 
 const handleShuffle = () => {
