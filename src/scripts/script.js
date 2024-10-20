@@ -89,7 +89,7 @@ const renderSongs = () => {
     songDiv.addEventListener('click', (event) => selectCurrentSong(song, event.target));
     songDiv.addEventListener('dblclick', () => {
       selectCurrentSong(song);
-
+      playCurrentSong();
     });
 
     playlistElement.appendChild(songDiv);
