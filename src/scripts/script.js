@@ -96,20 +96,6 @@ const renderSongs = () => {
   });
 };
 
-
- //todo: 
- // 1. Find song in array
- // 2. Set src and title for audio element
- // 3. if new song selected then clear current playback time
- // 4. if the same song is played then start from the same position
- // 5. Update play button to pause button
- // 6. start playing the audio using the audio api
-
-  //todo: 
-  // 1. Remember current position when playing the file
-  // 2. Update pause button to play button
-  // 3. pause the audio using the audio api
-
 const togglePlayPause = () => {
   if (isPlaying){
     audio.pause();
